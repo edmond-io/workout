@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="row">
+		<h1 class="grey-text text-darken-3">
+			<i class="material-icons small grey-text text-darken-2">settings_ethernet</i>
+			Muscle Group
+		</h1>
+		<div class="collection">
+			<a class="collection-item col m6 s12" 
+					*ngFor="let muscle of muscleList | orderBy: 'seq'"
+					[routerLink]="['/muscle', muscle.name]">
+				<!--<img src="images/{{muscle.name}}.jpg" alt="{{muscle.name}}" class="circle" />-->
+					{{muscle.cname}}
+				<i class="material-icons fright">chevron_right</i>
+				<br>
+				<span class="teal-text text-lighten-2">{{muscle.desc}}</span>
+			</a>
+		</div>
+	</div>
+</div>

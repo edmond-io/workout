@@ -1,0 +1,50 @@
+<div class="row">
+	Muscle ({{muscleList?.length}})
+	<table>
+		<tr>
+			<th>Seq</th>
+			<th>Name</th>
+			<th>Cname</th>
+			<th>Img</th>
+			<th>Desc</th>
+			<th></th>	
+		</tr>
+		<tr *ngFor="let muscle of muscleList | orderBy: 'seq'">
+			<td>{{muscle.seq}}</td>
+			<td>{{muscle.name}}</td>
+			<td>{{muscle.cname}}</td>
+			<td><img src="images/{{muscle.img}}" height="50px" />
+				{{muscle.img}}
+			</td>
+			<td>{{muscle.desc}}</td>
+			<td><a class="pointer" (click)="delegateMuscle(muscle)">Update</a> / 
+			<a class="pointer" (click)="deleteMuscle(muscle._id)">Delete</a></td>
+		</tr>
+	</table>
+</div>
+<div class="row">
+	<form (submit)="submitMuscle($event)">
+		<div class="input-field col s6">
+			<input type="number" [(ngModel)]="muscle_seq" id="muscle_seq" name="muscle_seq"/>
+			<label for="muscle_seq">Seq</label>
+		</div>
+		<div class="input-field col s6">
+			<input type="text" [(ngModel)]="muscle_name" id="muscle_name" name="muscle_name"/>
+			<label for="muscle_name">Muscle Name</label>
+		</div>
+		<div class="input-field col s6">
+			<input type="text" [(ngModel)]="muscle_cname" id="muscle_cname" name="muscle_cname"/>
+			<label for="muscle_cname">Muscle Chinese Name</label>
+		</div>
+		<div class="input-field col s6">
+			<input type="text" [(ngModel)]="muscle_img" id="muscle_img" name="muscle_img"/>
+			<label for="muscle_img">Img</label>
+		</div>
+		<div class="input-field col s6">
+			<input type="text" [(ngModel)]="muscle_desc" id="muscle_desc" name="muscle_desc"/>
+			<label for="muscle_desc">Description</label>
+		</div>
+		<input type="text" [(ngModel)]="muscle__id" name="muscle__id"/>
+		<button type="submit" class="btn">Submit</button>
+	</form>
+</div>

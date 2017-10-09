@@ -1,0 +1,41 @@
+<nav class="nav-extended z-depth-1">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Workout</a>
+		
+		<!-- Mobile Side Bar -->
+    <a href="#" materialize="dropdown" materialize="sideNav" data-activates="sidebar" class="button-collapse">
+	    <i class="material-icons">menu</i>
+	  </a>
+    <ul class="side-nav fixed hide-on-large-only" id="sidebar">
+      <li><a routerLink="/">Dumbbell</a></li>
+      <li><a routerLink="/">Workout</a></li>
+      <li><a routerLink="/">Crossbar</a></li>
+      <li><a routerLink="/helper">Helper</a></li>
+    </ul>
+		
+		<!-- Normal bar -->
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/">Dumbbell</a></li>
+      <li><a routerLink="/">Workout</a></li>
+      <li><a routerLink="/">Crossbar</a></li>
+      <li><a routerLink="/helper">Helper</a></li>
+    </ul>
+  </div>
+  
+  <!-- Extended Tabs -->
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent" materialize="tabs" >
+	    <li class="tab"><a routerLink="/" ><i class="material-icons">home</i></a>
+			<li class="tab">
+				<a [routerLink]="['/muscle', 'day1']">Day 1 背+三頭肌</a>
+			</li>
+			<li class="tab">
+				<a [routerLink]="['/muscle', 'day2']">Day 2 大腿+小腿</a>
+			</li>
+			<li class="tab">
+				<a [routerLink]="['/muscle', 'day3']">Day 3 胸+二頭肌</a>
+			</li>
+    </ul>
+  </div>
+
+</nav>

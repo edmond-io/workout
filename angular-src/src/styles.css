@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.pointer {cursor: pointer }
+.fleft {float: left}
+.fright{float: right}
+.inline-block{display: inline-block}
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
