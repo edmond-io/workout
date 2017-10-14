@@ -1,3 +1,36 @@
-<p>
-  exercise works!
-</p>
+<div *ngIf="theExercise">
+	<div class="row"></div>
+  <div class="valign-wrapper">
+		<i class="material-icons teal darken-2 white-text pointer hoverable round5 tooltipped show-on-small"
+				(click)="back()"
+				[class.backBtn]="true"
+				materialize="tooltip"
+				data-position="bottom" data-delay="10" data-tooltip="Back"
+				>chevron_left</i>
+    <h5 class="teal-text text-darken-3 title">{{theExercise.cname ? theExercise.cname: theExercise.name}}</h5>
+    <div class="fright chip" *ngIf="theExercise.reps" [textContent]="transform('reps', 'RM')"></div>
+    <div class="right-align chip" *ngIf="theExercise.sets" [textContent]="transform('sets', 'Sets')"></div>
+  </div>
+  <p class="teal-text text-darken-1 flow-text" *ngIf="theExercise.cname?.length > 0">{{theExercise.name}}</p>
+
+  <p *ngFor="let line of theExercise.desc">
+    {{line.length > 0 ? line : ''}}
+  </p>
+  <div *ngFor="let src of theExercise.img">
+    <img *ngIf="src.indexOf('mp4') == -1"
+        src="assets/images/{{theExercise.muscle[0]}}/{{src}}" class="responsive-img"/>
+
+    <video *ngIf="src.indexOf('mp4') > -1"
+        src="assets/images/{{theExercise.muscle[0]}}/{{src}}" class="responsive"></video>
+  </div>
+
+  <div class="grey-text">
+    <br>
+    <hr>
+    <p>{{theExercise._id}}</p>
+    <p>{{theExercise | json}}</p>
+  </div>
+</div>
+<div *ngIf="!theExercise">
+	<p>Click on the left</p>
+</div>

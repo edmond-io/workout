@@ -3,10 +3,17 @@
 .fleft {float: left}
 .fright{float: right}
 .inline-block{display: inline-block}
-.clearfix:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
    clear: both;
+}
+.round5{border-radius: 5px;}
+.round10{border-radius: 10px;}
+@media only screen and (min-width: 768px){
+	.show-on-small{
+		display: none;
+	}
 }
