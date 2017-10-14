@@ -1,17 +1,17 @@
 <div class="splitView">
-	<div class="sidebar">
-		
-			<div class="col s6">List of {{muscle}} exercise ({{exerciseList?.length}})</div>
-		
-			<div class="col s12 m5 l4">
+	<div class="sidebar" [class.fullWidth]="!theExercise" [class.zeroWidth]="theExercise">
+
+			<div class="">List of {{muscle}} exercise ({{exerciseList?.length}})</div>
+
+			<div class="">
 				<div class="card horizontal z-depth-1 pointer hoverable"
 					*ngFor="let ex of exerciseList" (click)=showDetail(ex)>
 					<div class="card-image">
-						<img *ngIf="ex.img[0].indexOf('mp4') == -1" 
-								src="images/{{ex.muscle[0]}}/{{ex.img[0]}}" />
-								
-						<video *ngIf="ex.img[0].indexOf('mp4') > -1" 
-								src="images/{{ex.muscle[0]}}/{{ex.img[0]}}">
+						<img *ngIf="ex.img[0].indexOf('mp4') == -1"
+								src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}" />
+
+						<video *ngIf="ex.img[0].indexOf('mp4') > -1"
+								src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}">
 						</video>
 					</div>
 					<div class="card-stacked">
@@ -21,38 +21,11 @@
 					</div>
 				</div>
 			</div>
-		
 	</div>
-	
+
 	<div class="content">
-		<div class="rightPanel">
-			<div *ngIf="theExercise">
-				<div class="clearfix">
-					<h5 class="inline-block teal-text text-darken-3">{{theExercise.cname ? theExercise.cname: theExercise.name}}</h5>
-					<div class="chip" *ngIf="theExercise.reps" [textContent]="transform('reps', 'RM')"></div>
-					<div class="chip" *ngIf="theExercise.sets" [textContent]="transform('sets', 'Sets')"></div>
-				</div>
-				<p class="teal-text text-darken-1 flow-text" *ngIf="theExercise.cname?.length > 0">{{theExercise.name}}</p>
-				
-				<p *ngFor="let line of theExercise.desc">
-					{{line.length > 0 ? line : ''}}
-				</p>
-				<div *ngFor="let src of theExercise.img">
-					<img *ngIf="src.indexOf('mp4') == -1" 
-							src="images/{{theExercise.muscle[0]}}/{{src}}" class="responsive-img"/>
-							
-					<video *ngIf="src.indexOf('mp4') > -1" 
-							src="images/{{theExercise.muscle[0]}}/{{src}}" class="responsive"></video>
-				</div>
-				
-				<div class="grey-text">
-					<br>
-					<hr>
-					<p>{{theExercise._id}}</p>
-					<p>{{theExercise | json}}</p>
-				</div>
-			</div>
-			
+		<div class="rightPanel" [class.fullWidth]="theExercise" [class.zeroWidth]="!theExercise">
+			<app-exercise [theExercise]="theExercise"></app-exercise>
 		</div>
 	</div>
 </div>

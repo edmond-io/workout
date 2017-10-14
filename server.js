@@ -41,7 +41,7 @@ app.use('/images', express.static(path.join(__dirname, 'client/assets/images')))
 app.use('/*', express.static(path.join(__dirname, 'client')));
 
 
-// 404 catch 
+// 404 catch
 app.all('*', function(req, res){
 	console.log("[TRACE] Server 404 request: "+req.originalUrl);
 	res.status(200).render('/');

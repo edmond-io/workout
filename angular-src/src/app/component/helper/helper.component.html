@@ -7,17 +7,17 @@
 			<th>Cname</th>
 			<th>Img</th>
 			<th>Desc</th>
-			<th></th>	
+			<th></th>
 		</tr>
 		<tr *ngFor="let muscle of muscleList | orderBy: 'seq'">
 			<td>{{muscle.seq}}</td>
 			<td>{{muscle.name}}</td>
 			<td>{{muscle.cname}}</td>
-			<td><img src="images/{{muscle.img}}" height="50px" />
+			<td><img src="assets/images/{{muscle.img}}" height="50px" />
 				{{muscle.img}}
 			</td>
 			<td>{{muscle.desc}}</td>
-			<td><a class="pointer" (click)="delegateMuscle(muscle)">Update</a> / 
+			<td><a class="pointer" (click)="delegateMuscle(muscle)">Update</a> /
 			<a class="pointer" (click)="deleteMuscle(muscle._id)">Delete</a></td>
 		</tr>
 	</table>

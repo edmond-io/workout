@@ -26,11 +26,6 @@ const ROUTES = [
     component: MuscleComponent
   },
   {
-	  name: 'Exercise',
-    path: 'muscle/:name/:ex_id',
-    component: ExerciseComponent
-  },
-  {
 	  name: 'Helper',
     path: 'helper',
     component: HelperComponent
@@ -40,7 +35,7 @@ const ROUTES = [
 		component: DashboardComponent,
     pathMatch: 'full'
   }
-  
+
 ]
 
 @NgModule({
