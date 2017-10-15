@@ -1,12 +1,10 @@
 <div *ngIf="theExercise">
 	<div class="row"></div>
   <div class="valign-wrapper">
-		<i class="material-icons teal darken-2 white-text pointer hoverable round5 tooltipped show-on-small"
+		<i class="material-icons teal darken-2 white-text pointer hoverable round5 tooltipped hide-on-med-and-up"
 				(click)="back()"
-				[class.backBtn]="true"
-				materialize="tooltip"
-				data-position="bottom" data-delay="10" data-tooltip="Back"
-				>chevron_left</i>
+				[class.backBtn]="true">
+				chevron_left</i>
     <h5 class="teal-text text-darken-3 title">{{theExercise.cname ? theExercise.cname: theExercise.name}}</h5>
     <div class="fright chip" *ngIf="theExercise.reps" [textContent]="transform('reps', 'RM')"></div>
     <div class="right-align chip" *ngIf="theExercise.sets" [textContent]="transform('sets', 'Sets')"></div>

@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
-import { Location }  from '@angular/common';
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { ExerciseService } from '../../services/exercise.service';
@@ -11,7 +10,7 @@ import { toast } from 'angular2-materialize';
 @Component({
   selector: 'app-muscle',
   templateUrl: './muscle.component.html',
-  styleUrls: ['./muscle.component.css'],
+  styleUrls: ['./muscle.component.scss'],
   providers: []
 })
 export class MuscleComponent implements OnInit {
@@ -22,8 +21,7 @@ export class MuscleComponent implements OnInit {
   constructor(private exerciseService: ExerciseService,
 			private route: ActivatedRoute,
 			private router: Router) {
-		console.log("init again");
-	  //this.exerciseList = [];
+
   }
 
   ngOnInit() {

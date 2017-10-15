@@ -5,7 +5,9 @@
 
 			<div class="">
 				<div class="card horizontal z-depth-1 pointer hoverable"
-					*ngFor="let ex of exerciseList" (click)=showDetail(ex)>
+					*ngFor="let ex of exerciseList" (click)=showDetail(ex)
+					[class.active]="theExercise?._id === ex._id"
+					>
 					<div class="card-image">
 						<img *ngIf="ex.img[0].indexOf('mp4') == -1"
 								src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}" />
@@ -15,8 +17,8 @@
 						</video>
 					</div>
 					<div class="card-stacked">
-						<div class="card-content">
-							<span class="card-title">{{ex.cname}}</span>
+						<div class="card-content valign-wrapper">
+							<span class="card-title flow-text">{{ex.cname}}</span>
 						</div>
 					</div>
 				</div>
