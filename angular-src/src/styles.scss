@@ -2,8 +2,8 @@
 @import '~materialize-css/sass/components/color';
 
 $primary-color: color("teal", "base") !default;
-$primary-color-light: lighten($primary-color, 15%) !default;
-$primary-color-dark: darken($primary-color, 15%) !default;
+$primary-color-light: lighten($primary-color, 5%) !default;
+$primary-color-dark: darken($primary-color, 10%) !default;
 $secondary-color: #fbc308 !default;
 $link-color: $secondary-color !default;
 $success-color: color("green", "lighten-2") !default;
@@ -17,13 +17,131 @@ $roboto-font-path: '~materialize-css/dist/fonts/roboto/' !default;
 @import '~materialize-css/sass/materialize';
 /* ====== end of materialize scss ====== */
 
+/* ===== scss setup ===== */
+$header-height: 3rem;
+
 @mixin border-radius($radius){
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;
 	border-radius: $radius;
 }
+@mixin flex{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+/* ===== End of scss setup ===== */
 
+/* ====== common layout ===== */
+.sidebar{
+	border-right: 1px solid rgba(128, 128, 128, .25);
+	-webkit-flex-basis: 30%;
+	-ms-flex-preferred-size: 30%;
+	flex-basis: 30%;
+	-webkit-flex-shrink: 0;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	max-width: 480px;
+	min-width: 300px;
+	-webkit-overflow-scrolling: touch;
+}
+.content{
+	@include flex;
+	z-index: 2;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+.splitView{
+	@include flex;
+	height: calc(100vh - #{$header-height});
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: $header-height;
+}
 
+// for generated materialize DOM
+nav .headerMenu{
+	.select-wrapper{
+		width: 100%;
+		padding: 0 1.75rem 0 0.75rem;
+		text-align: center;
+
+		span.caret{
+			right: 0.75rem;
+			color: white;
+		}
+		input.select-dropdown{
+			margin: 0;
+			padding: 0 10px;
+			font-size: 1.2rem;
+			border-bottom: none;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			&:hover{
+				background-color: rgba(0,0,0,0.25);
+			}
+		}
+	}
+
+	// menu options
+	.dropdown-content li{
+		transition: all .3s;
+		margin: 0;
+		min-height: $header-height;
+		& > span{
+			color: black;
+			line-height: 3rem;
+			padding: 0 0 0 12%;
+			font-size: 1rem;
+			//transition: all .3s;
+			&.selected,
+			&:hover{
+				color: $link-color;
+			}
+		}
+		&.selected > span{
+			color: $link-color;
+		}
+		&:first-child >span{
+			color: $primary-color;
+		}
+		img{
+			margin: 0 15px 0 5px;
+			height: $header-height;
+			width: auto;
+			max-width: $header-height;
+		}
+	}
+}
+
+@media #{$small-and-down}{
+	.zeroWidth{
+		min-width: 0;
+		-webkit-flex-basis: 0%;
+		-ms-flex-preferred-size: 0%;
+		display: none;
+	}
+	.fullWidth{
+		border: 0;
+		-webkit-flex-basis: 100%;
+		-ms-flex-preferred-size: 100%;
+		max-width: none;
+		overflow-y: hidden;
+		position: relative;
+	}
+	.fullWidth.rightPanel{
+		padding: 0 0.5rem 0 0.5rem;
+	}
+}
+/* ===== End of common layout ===== */
+
+*, :after, :before{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 .pointer {cursor: pointer }
 .fleft {float: left}
 .fright{float: right}

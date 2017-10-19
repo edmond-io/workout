@@ -22,10 +22,6 @@ export class ExerciseComponent implements OnInit {
   	// 	});
   }
 
-	back(){
-		this.location.back();
-	}
-
   transform(field, suffix){
 		if (!this.theExercise || this.isEmpty(this.theExercise[field]))
 			return "";

@@ -7,9 +7,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ExerciseService {
 	endPoint: string;
-	
+
   constructor(private http: Http) { 
-	  console.log('Exercise Service Initialized...');
 	  this.endPoint = environment.server+'exercise';
   }
 
@@ -18,35 +17,35 @@ export class ExerciseService {
 				.map(res => res.json())
 				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
 	}
-	
+
 	get(id){
 		return this.http.get(`${this.endPoint}/${id}`)
 				.map(res => res.json())
 				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
 	}
-	
+
 	getByName(name){
 		return this.http.get(`${this.endPoint}/getByName/${name}`)
 				.map(res => res.json())
 				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
 	}
-	
+
 	add(vo){
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		return this.http.post(this.endPoint, JSON.stringify(vo), {headers: headers})
 			.map(res => res.json())
 			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-			
+
 	}
-	
+
 	delete(id){
 		return this.http.delete(`${this.endPoint}/${id}`)
 				.map(res => res.json())
 				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-				
+
 	}
-	
+
 	update(vo){
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
@@ -54,5 +53,5 @@ export class ExerciseService {
 			.map(res => res.json())
 			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
 	}
-	
+
 }

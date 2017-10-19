@@ -1,44 +1,17 @@
 @import '../../../styles';
 
 // ===== Layout =====
-.splitView{
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	height: calc(100vh - 113px);
-	left: 0;
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	top: 113px
-}
 .sidebar{
 	background: #fff;
-	border-right: 1px solid rgba(128, 128, 128, .25);
-	-webkit-flex-basis: 30%;
-	-ms-flex-preferred-size: 30%;
-	flex-basis: 30%;
 	-webkit-flex-direction: column;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	-webkit-flex-shrink: 0;
-	-ms-flex-negative: 0;
-	flex-shrink: 0;
-	max-width: 480px;
-	min-width: 300px;
-	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding-bottom: 1px;
-	position: relative
+	position: relative;
 }
 .content{
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-grow: 1;
-	-ms-flex-positive: 1;
-	flex-grow: 1;
 	height: 100%;
 	overflow: hidden;
 }
@@ -55,26 +28,9 @@
 	.splitView{
 		height: auto;
 		margin-bottom: 3rem;
-		min-height: calc(100vh - 113px);
+		min-height: calc(100vh - $header-height);
 		position: relative;
 		top: 0
-	}
-	.zeroWidth{
-		min-width: 0;
-		-webkit-flex-basis: 0%;
-		-ms-flex-preferred-size: 0%;
-		display: none;
-	}
-	.fullWidth{
-		border: 0;
-		-webkit-flex-basis: 100%;
-		-ms-flex-preferred-size: 100%;
-		max-width: none;
-		overflow-y: hidden;
-		position: relative;
-	}
-	.fullWidth.rightPanel{
-		padding: 0 0.5rem 0 0.5rem;
 	}
 }
 // ===== End of Layout =====

@@ -1,11 +1,44 @@
 <div class="container">
+	<div class="row"></div>
+
 	<div class="row">
-		<h1 class="grey-text text-darken-3">
+		<h2>Daily Practices</h2>
+		<div class="col s12 m4">
+			<div class="card hoverable">
+				<a [routerLink]="['/muscle', 'day1']">
+					<div class="card-content blue-grey darken-1">
+						<span class="card-title white-text">Day 1 背+三頭肌</span>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card hoverable">
+				<a [routerLink]="['/muscle', 'day2']">
+					<div class="card-content blue-grey darken-1">
+						<span class="card-title white-text">Day 2 大腿+小腿</span>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card hoverable">
+				<a [routerLink]="['/muscle', 'day3']">
+					<div class="card-content blue-grey darken-1">
+						<span class="card-title white-text">Day 3 胸+二頭肌</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<h2 class="grey-text text-darken-3">
 			<i class="material-icons small grey-text text-darken-2">settings_ethernet</i>
 			Muscle Group
-		</h1>
+		</h2>
 		<div class="collection">
-			<a class="collection-item col m6 s12" 
+			<a class="collection-item col m6 s12"
 					*ngFor="let muscle of muscleList | orderBy: 'seq'"
 					[routerLink]="['/muscle', muscle.name]">
 				<!--<img src="images/{{muscle.name}}.jpg" alt="{{muscle.name}}" class="circle" />-->

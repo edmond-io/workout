@@ -1,19 +1,19 @@
 export class Exercise {
-	_id: String;
-	
+	_id: string;
+
 	ex_id: number;
-	
-	name: String;
-	
-	cname: String;
-	
-	muscle: String[];
-	
+
+	name: string;
+
+	cname: string;
+
+	muscle: string[];
+
 	reps: number[];
-	
+
 	sets: number[];
-	
-	desc: String[]; 
-	
-	img_path: String[];
+
+	desc: string[];
+
+	img_path: string[];
 }

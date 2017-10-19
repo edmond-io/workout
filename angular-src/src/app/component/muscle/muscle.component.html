@@ -1,8 +1,5 @@
 <div class="splitView">
 	<div class="sidebar" [class.fullWidth]="!theExercise" [class.zeroWidth]="theExercise">
-
-			<div class="">List of {{muscle}} exercise ({{exerciseList?.length}})</div>
-
 			<div class="">
 				<div class="card horizontal z-depth-1 pointer hoverable"
 					*ngFor="let ex of exerciseList" (click)=showDetail(ex)
