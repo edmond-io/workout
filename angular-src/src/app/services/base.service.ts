@@ -18,7 +18,7 @@ export class BaseService {
 	setTitle(title: string){
 		this.titleSource.next(title);
 	}
-	setExercise(ex: Exercise){
+	setExercise(ex){
 		if (ex == null)
 			this.setTitle("");
 		else

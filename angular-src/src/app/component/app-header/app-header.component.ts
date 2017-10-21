@@ -77,9 +77,9 @@ export class AppHeaderComponent implements OnInit {
 		this.location.back();
 	}
 
-	route(){
-		let link = (this.selectedMuscle)
-			? '/muscle/'+this.selectedMuscle
+	route(muscleName: string){
+		let link = (muscleName)
+			? '/muscle/'+muscleName
 			: '/';
 
 		this.router.navigate([link]);
