@@ -18,7 +18,8 @@
 	</div>
 	<div class="content"  [ngClass]="!exercise ? 'zeroWidth' : 'fullWidth'">
 		<i class="material-icons"
-			(click)="back()">arrow_back</i>
+			(click)="back()"
+			*ngIf="exercise">arrow_back</i>
 		<span class="title">{{title}}</span>
 
 		<div class="tools">
