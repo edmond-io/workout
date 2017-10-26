@@ -95,6 +95,7 @@
 					<div class="chips"
 							materialize="material_chip"
 							[materializeParams]="[imgChipsParams]"
+							[materializeActions]="imgChipsAction"
 							(chip.add)="exercise.img.push($event.detail.tag)"
 							(chip.delete)="deleteInArray(exercise.img, $event.detail.tag)"></div>
 					<label for="img">Path to img</label>

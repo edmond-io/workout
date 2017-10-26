@@ -28,11 +28,13 @@ export class AppHeaderComponent implements OnInit {
 	name: string;
 	cname: string;
 
+	muscleChipsAction = new EventEmitter<string|MaterializeAction>();
 	muscleChipsParams = {
 		placeholder: '+Muscle',
 		secondaryPlaceholder: 'Enter tag'
   };
 
+	imgChipsAction = new EventEmitter<string|MaterializeAction>();
 	imgChipsParams = {
 		placeholder: '+Feature image',
 		secondaryPlaceholder: 'Enter image path'
@@ -59,6 +61,10 @@ export class AppHeaderComponent implements OnInit {
 				this.muscleChipsParams["data"] = p["muscle"].map(m => {
 					return { tag: m }
 				});
+				this.muscleChipsAction.emit({
+					action:"material_chip",
+					params: [this.muscleChipsParams]
+				});
 			} else if (this.exercise){
 				this.exercise["muscle"] = [];
 			}
@@ -66,6 +72,10 @@ export class AppHeaderComponent implements OnInit {
 			if (this.exercise && this.exercise.img){
 				this.imgChipsParams["data"] = p["img"].map(img => {
 					return { tag: img }
+				});
+				this.imgChipsAction.emit({
+					action:"material_chip",
+					params: [this.imgChipsParams]
 				});
 			} else if (this.exercise){
 				this.exercise["img"] = [];
