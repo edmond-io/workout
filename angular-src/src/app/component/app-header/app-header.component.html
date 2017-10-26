@@ -60,7 +60,7 @@
 					<div class="chips"
 							materialize="material_chip"
 							[materializeParams]="[muscleChipsParams]"
-							[MaterializeAction]="muscleChipsAction"
+							[materializeActions]="muscleChipsAction"
 							(chip.add)="exercise.muscle.push($event.detail.tag)"
 							(chip.delete)="deleteInArray(exercise.muscle, $event.detail.tag)"></div>
 					<label for="muscle" class="active">Muscle Group / Collection</label>
