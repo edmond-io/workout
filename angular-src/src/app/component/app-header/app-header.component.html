@@ -16,15 +16,118 @@
 			</select>
 		</div>
 	</div>
-	<div class="content"  [ngClass]="!exercise ? 'zeroWidth' : 'fullWidth'">
-		<i class="material-icons"
-			(click)="back()"
-			*ngIf="exercise">arrow_back</i>
-		<span class="title">{{title}}</span>
-
+	<div class="content" [ngClass]="!exercise ? 'zeroWidth' : 'fullWidth'">
+		<div class="titleWrapper">
+			<i class="material-icons"
+					*ngIf="exercise"
+				(click)="back()">arrow_back</i>
+			<span class="title"
+					*ngIf="exercise">{{title}}</span>
+		</div>
 		<div class="tools">
+			<a *ngIf="exercise" (click)="starExercise()">
+					<i class="material-icons"
+						[textContent]="exercise ? 'star' : 'star_outline'"></i>
+			</a>
+			<a *ngIf="exercise" (click)="openUpdateModal()">
+					<i class="material-icons">edit</i></a>
 			<a routerLink="/"><i class="material-icons">settings</i></a>
 		</div>
 	</div>
-
 </nav>
+
+<div id="updateModal" class="modal bottom-sheet modal-fixed-footer"
+		materialize="modal"
+		[materializeParams]="updateModalParams"
+		[materializeActions]="updateModalAction">
+	<div class="modal-content" *ngIf="exercise; else loadingUpdateModal">
+		<h4>Update Exercise Content</h4>
+		<form materialize class="col s12">
+			<div class="row">
+
+				<!-- Name -->
+				<div class="input-field col s12 m6">
+					<input [(ngModel)]="exercise.name" name="name" placeholder="Name" id="name" type="text" class="validate" required>
+					<label for="name">Name</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input [(ngModel)]="exercise.cname" name="cname" placeholder="Chinese Name" id="cname" type="text" class="validate" required>
+					<label for="cname">Chinese Name</label>
+				</div>
+
+
+				<div class="input-field col s12">
+					<div class="chips"
+							materialize="material_chip"
+							[materializeParams]="[muscleChipsParams]"
+							(chip.add)="exercise.muscle.push($event.detail.tag)"
+							(chip.delete)="deleteInArray(exercise.muscle, $event.detail.tag)"></div>
+					<label for="muscle" class="active">Muscle Group / Collection</label>
+				</div>
+
+				<!-- Sets and Reps -->
+				<div class="input-field col s3">
+					<input [ngModel]="exercise.sets?.length > 0 ? exercise.sets[0] : exercise._sets0"
+						(ngModelChange)="exercise.sets[0] = $event"
+						name="min_sets" placeholder="Min Sets" id="min_sets" type="number" class="validate">
+					<label for="min_sets">Min Sets</label>
+				</div>
+				<div class="input-field col s3">
+					<input [ngModel]="exercise.sets?.length > 1 ? exercise.sets[1] : exercise._sets1"
+						(ngModelChange)="exercise.sets[1] = $event"
+						name="max_sets" placeholder="Max Sets" id="max_sets" type="number" class="validate">
+					<label for="max_sets">Max Sets</label>
+				</div>
+				<div class="input-field col s3">
+					<input [ngModel]="exercise.reps?.length > 0 ? exercise.reps[0] : exercise._reps0"
+						(ngModelChange)="exercise.reps[0] = $event"
+						name="min_reps" placeholder="Min Reps" id="min_reps" type="number" class="validate">
+					<label for="min_reps">Min Reps</label>
+				</div>
+				<div class="input-field col s3">
+					<input [ngModel]="exercise.reps?.length > 1 ? exercise.reps[1] : exercise._reps1"
+						(ngModelChange)="exercise.reps[1] = $event"
+						name="max_reps" placeholder="Max Reps" id="max_reps" type="number" class="validate">
+					<label for="max_reps">Max Reps</label>
+				</div>
+
+				<div class="input-field col s12">
+					<div class="chips"
+							materialize="material_chip"
+							[materializeParams]="[imgChipsParams]"
+							(chip.add)="exercise.img.push($event.detail.tag)"
+							(chip.delete)="deleteInArray(exercise.img, $event.detail.tag)"></div>
+					<label for="img">Path to img</label>
+				</div>
+				<div class="input-field col s12">
+					<textarea id="desc" class="materialize-textarea"
+							[ngModel]="exercise.desc?.length > 0 ? exercise.desc[0] : exercise._desc"
+							(ngModelChange)="exercise.desc[0] = $event"
+							materialize="materialize-textarea"
+							materialize="characterCounter"
+							rows=5
+							name="desc" class="validate"></textarea>
+					<label for="desc">Description</label>
+				</div>
+
+			</div>
+		</form>
+		<pre class="grey-text"
+				[textContent]="exercise | json">
+		</pre>
+	</div>
+	<div class="modal-footer grey lighten-2">
+		<a class="waves-effect modal-close waves-red btn btn-flat fleft">Close</a>
+		<a class="modal-action waves-effect btn-flat btn teal-text"
+			(click)="confirmUpdate()" *ngIf="exercise">Save</a>
+	</div>
+	<ng-template #loadingUpdateModal>
+		<div class="modal-content">
+			<h4>Loading exercise</h4>
+			<br>
+			<div class="progress">
+				<div class="indeterminate"></div>
+			</div>
+		</div>
+	</ng-template>
+</div>

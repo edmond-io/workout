@@ -15,5 +15,5 @@ export class Exercise {
 
 	desc: string[];
 
-	img_path: string[];
+	img: string[];
 }

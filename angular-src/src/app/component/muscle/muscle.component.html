@@ -1,29 +1,27 @@
 <div class="splitView">
-	<div class="sidebar" [class.fullWidth]="!theExercise" [class.zeroWidth]="theExercise">
-			<div class="">
-				<div class="card horizontal z-depth-1 pointer hoverable"
-					*ngFor="let ex of exerciseList" (click)=showDetail(ex)
-					[class.active]="theExercise?._id === ex._id"
-					>
-					<div class="card-image">
-						<img *ngIf="ex.img[0].indexOf('mp4') == -1"
-								src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}" />
+	<div class="sidebar" [ngClass]="theExercise ? 'zeroWidth' : 'fullWidth'">
+			<div class="card horizontal z-depth-1 pointer hoverable"
+				*ngFor="let ex of exerciseList"
+				(click)=showDetail(ex)
+				[class.active]="theExercise?._id === ex._id">
+				<div class="card-image" *ngIf="ex.img[0]">
+					<img *ngIf="ex.img[0]?.indexOf('mp4') == -1"
+							src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}" />
 
-						<video *ngIf="ex.img[0].indexOf('mp4') > -1"
-								src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}">
-						</video>
-					</div>
-					<div class="card-stacked">
-						<div class="card-content valign-wrapper">
-							<span class="card-title flow-text">{{ex.cname}}</span>
-						</div>
+					<video *ngIf="ex.img[0]?.indexOf('mp4') > -1"
+							src="assets/images/{{ex.muscle[0]}}/{{ex.img[0]}}">
+					</video>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content valign-wrapper">
+						<span class="card-title flow-text">{{ex.cname}}</span>
 					</div>
 				</div>
 			</div>
 	</div>
 
 	<div class="content">
-		<div class="rightPanel" [class.fullWidth]="theExercise" [class.zeroWidth]="!theExercise">
+		<div class="rightPanel" [ngClass]="theExercise ? 'fullWidth' : 'zeroWidth'">
 			<app-exercise [theExercise]="theExercise"></app-exercise>
 		</div>
 	</div>

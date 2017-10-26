@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1]
+### Added
+- Update each exercise
+### Changed
+- compress media
+
 ## [1.1.0] - 2017-10-19
 ### Added
 - Header Bar improvement (for Mobile)

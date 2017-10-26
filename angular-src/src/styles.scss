@@ -47,7 +47,7 @@ $header-height: 3rem;
 }
 .content{
 	@include flex;
-	z-index: 2;
+	z-index: 1;
 	-webkit-flex-grow: 1;
 	-ms-flex-positive: 1;
 	flex-grow: 1;
@@ -160,3 +160,5 @@ nav .headerMenu{
 .hoverable:hover,
 .collection a.collection-item:not(.active):hover
 {background-color: #f2f2f2}
+
+.modal-overlay{z-index: 1 !important;}
