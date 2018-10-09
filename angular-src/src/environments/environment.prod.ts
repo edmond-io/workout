@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  server: 'http://lll.vip.hk/api/'
+  server: 'http://254.us.to/api/'
 };
