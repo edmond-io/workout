@@ -3,7 +3,8 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// Used in fallback mode only
 export const environment = {
   production: false,
-  server: 'http://192.168.0.108:8282/api/'
+  server: 'http://localhost:8282/api/'
 };

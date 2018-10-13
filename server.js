@@ -2,11 +2,18 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const index = require('./routes/index');
-const env = require('./routes/env');
-const tasks = require('./routes/tasks');
+let env = require('./routes/env');
+let index = require('./routes/index');
+let tasks = require('./routes/tasks');
 
 const app = express();
+
+// load environment variables
+require('dotenv').config();
+//if (process.env.NODE_ENV !== 'PROD') {
+//     require('dotenv').config();
+//}
+
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -47,17 +54,16 @@ app.all('*', function(req, res){
 	res.status(200).render('/');
 });
 
-
 // development error handler
-// will print stacktrace
-if (process.env.ENV === 'DEV') {
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error.html', {
-      message: err.message,
-      error: err
+// show stacktrace
+if (process.env.NODE_ENV === 'DEV') {
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error.html', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler

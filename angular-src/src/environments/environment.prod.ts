@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  server: 'http://254.us.to/api/'
+  server: 'https://khloapp.herokuapp.com/api/'
 };

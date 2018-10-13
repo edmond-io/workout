@@ -1,52 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Rx';
+import { Injectable } from '@angular/core';;
+import { ApiService } from './api.service';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MuscleService {
 	endPoint: string;
 
-  constructor(private http: Http) { 	  
-	  this.endPoint = environment.server+'muscle/';
+  constructor(private apiService: ApiService) {
+	  this.endPoint = 'muscle/';
   }
 
 	getAll(){
-		return this.http.get(this.endPoint)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(this.endPoint)
+      // .map(res => res.json())
 	}
 
-
 	get(id){
-		return this.http.get(this.endPoint+id)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(this.endPoint+id)
+      // .map(res => res.json())
 	}
 
 	add(vo){
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.endPoint, JSON.stringify(vo), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-
+		return this.apiService.post(this.endPoint, vo)
+      // .map(res => res.json())
 	}
 
 	delete(id){
-		return this.http.delete(this.endPoint+id)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-
+		return this.apiService.delete(this.endPoint+id)
+      // .map(res => res.json())
 	}
 
 	update(vo){
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.put(this.endPoint+vo._id, JSON.stringify(vo), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.put(this.endPoint+vo._id, vo)
+      // .map(res => res.json())
 	}
 
 }

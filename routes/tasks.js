@@ -1,6 +1,9 @@
 const express = require('express');
 const mongojs = require('mongojs');
-const router = express.Router();
+const router = express.Router()
+
+// load environment variables
+require('dotenv').config();
 const db = mongojs('mongodb://' + process.env.MONGO_KEY, [
 	'category', 'muscle', 'exercise'
 ])

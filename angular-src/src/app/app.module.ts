@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterializeModule } from 'angular2-materialize';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { MuscleComponent } from './component/muscle/muscle.component';
 import { ExerciseComponent } from './component/exercise/exercise.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AppHeaderComponent } from './component/app-header/app-header.component';
+import { ApiService } from "./services/api.service";
 
 // Define routes
 const ROUTES = [
@@ -55,7 +56,15 @@ const ROUTES = [
   	MaterializeModule,
   	RouterModule.forRoot(ROUTES, { enableTracing: false })
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (apiService: ApiService) => () => apiService.load(),
+      deps: [ApiService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
