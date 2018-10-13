@@ -1,57 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import {ApiService} from "./api.service";
 
 @Injectable()
 export class ExerciseService {
 	endPoint: string;
 
-  constructor(private http: Http) { 
-	  this.endPoint = environment.server+'exercise';
+  constructor(private apiService: ApiService) {
+	  this.endPoint = 'exercise';
   }
 
 	getAll(){
-		return this.http.get(this.endPoint)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(this.endPoint)
 	}
 
 	get(id){
-		return this.http.get(`${this.endPoint}/${id}`)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(`${this.endPoint}/${id}`)
 	}
 
 	getByName(name){
-		return this.http.get(`${this.endPoint}/getByName/${name}`)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(`${this.endPoint}/getByName/${name}`)
 	}
 
 	add(vo){
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.endPoint, JSON.stringify(vo), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-
+		return this.apiService.post(this.endPoint, vo)
 	}
 
 	delete(id){
-		return this.http.delete(`${this.endPoint}/${id}`)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-
+		return this.apiService.delete(`${this.endPoint}/${id}`)
 	}
 
 	update(vo){
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.put(`${this.endPoint}/${vo._id}`, JSON.stringify(vo), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.put(`${this.endPoint}/${vo._id}`, vo)
 	}
 
 }

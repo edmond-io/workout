@@ -1,50 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Rx';
+import { ApiService } from './api.service';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CategoryService {
 	endPoint: string;
 	
-  constructor(private http: Http) { 
-	  //super(_apiService);
-	  console.log('Category Service Initialized...');
-	  this.endPoint = environment.server+'category/';
+  constructor(private apiService: ApiService) {
+	  this.endPoint = 'category/';
   }
 
 	getCategories(){
-		return this.http.get(this.endPoint)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.get(this.endPoint)
 	}
 	
 	addCategory(newCat){
-		
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.endPoint, JSON.stringify(newCat), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-			
+		return this.apiService.post(this.endPoint, newCat)
 	}
 	
 	deleteCategory(id){
-		
-		return this.http.delete(this.endPoint+id)
-				.map(res => res.json())
-				.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
-				
+		return this.apiService.delete(this.endPoint+id);
 	}
 	
 	updateCategory(cat){
-		
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return this.http.put(this.endPoint+cat._id, JSON.stringify(cat), {headers: headers})
-			.map(res => res.json())
-			.catch((err:any) => Observable.throw(err.json().error || 'Server error'));
+		return this.apiService.put(this.endPoint+cat._id, cat)
 	}
 	
 }

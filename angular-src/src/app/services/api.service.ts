@@ -9,9 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class ApiService {
 	private serverAddress: string;
 	
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) { }
 
   load(){
     return new Promise((resolve, reject) => {
