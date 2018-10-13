@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "cd angular-src && ng build --prod"
+    "build_client": "cd angular-src && ng build --prod",
+    "postinstall": "npm run build_client"
   },
   "engines": {
     "node": "7.10.1",
