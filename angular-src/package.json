@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch",
     "prod": "ng build --prod",
-    "update ng": "npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest --save",
+    "update_ng": "npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest --save",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
