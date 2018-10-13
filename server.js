@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var tasks = require('./routes/tasks');
+const index = require('./routes/index');
+const tasks = require('./routes/tasks');
 
-var port = 8282;
+const PORT = process.env.PORT || 8282;
 
-var app = express();
+const app = express();
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -21,9 +21,9 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.listen(port, function(){
-	console.log('Server started on '+port+ '!');
-})
+app.listen(PORT, function(){
+	console.log('Server started on '+PORT+ '!');
+});
 
 // CORS
 app.use(function(req, res, next) {
