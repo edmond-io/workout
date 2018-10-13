@@ -60,11 +60,16 @@ const ROUTES = [
     ApiService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (apiService: ApiService) => () => apiService.load(),
-      deps: [ApiService],
+      useFactory: init,
+      deps: [ ApiService ],
       multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
+
+export function init(apiService: ApiService){
+  // Do initing of services that is required before app loads
+  return () => apiService.load();
+}
 export class AppModule { }
