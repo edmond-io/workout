@@ -39,6 +39,11 @@ const ROUTES = [
 
 ]
 
+export function init(apiService: ApiService){
+  // Do initing of services that is required before app loads
+  return () => apiService.load();
+}
+
 @NgModule({
   declarations: [
   	OrderByPipe,
@@ -68,8 +73,4 @@ const ROUTES = [
   bootstrap: [AppComponent]
 })
 
-export function init(apiService: ApiService){
-  // Do initing of services that is required before app loads
-  return () => apiService.load();
-}
 export class AppModule { }
