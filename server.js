@@ -3,9 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
+const env = require('./routes/env');
 const tasks = require('./routes/tasks');
-
-const PORT = process.env.PORT || 8282;
 
 const app = express();
 
@@ -21,8 +20,8 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.listen(PORT, function(){
-	console.log('Server started on '+PORT+ '!');
+app.listen(process.env.PORT, function(){
+	console.log('Server started on '+ process.env.PORT + '!');
 });
 
 // CORS
@@ -34,8 +33,9 @@ app.use(function(req, res, next) {
 });
 
 // routes
-app.use('/api', tasks);
 app.use('/', index);
+app.use('/env', env);
+app.use('/api', tasks);
 
 app.use('/images', express.static(path.join(__dirname, 'client/assets/images')));
 app.use('/*', express.static(path.join(__dirname, 'client')));
@@ -47,10 +47,10 @@ app.all('*', function(req, res){
 	res.status(200).render('/');
 });
 
-/*
+
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (process.env.ENV === 'DEV') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error.html', {
@@ -62,11 +62,11 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error.html', {
-    message: err.message,
-    error: {}
-  });
-});
-*/
+// app.use(function (err, req, res, next) {
+//   res.status(err.status || 500);
+//   res.render('error.html', {
+//     message: err.message,
+//     error: {}
+//   });
+// });
+

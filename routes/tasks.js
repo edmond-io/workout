@@ -1,7 +1,7 @@
-var express = require('express');
-var mongojs = require('mongojs');
-var router = express.Router();
-var db = mongojs('mongodb://user:12aBCd34@ds064198.mlab.com:64198/mongo', [
+const express = require('express');
+const mongojs = require('mongojs');
+const router = express.Router();
+const db = mongojs('mongodb://' + process.env.MONGO_KEY, [
 	'category', 'muscle', 'exercise'
 ])
 
