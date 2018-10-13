@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 /* GET env variables to client-side */
-router.get('/env', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.json({
-      server: process.env.SERVER
+      "server": process.env.SERVER
   });
 });
 
